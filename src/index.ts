@@ -44,10 +44,6 @@ export const schema: Document = {
 
 export const numDocs = 500
 
-/**
- * NOTE: Downstream libraries using this function will need to
- * include faker as a dependency to avoid a runtime error.
- */
 export const genUser = () => ({
   name: faker.person.fullName(),
   likes: [faker.animal.dog(), faker.animal.cat()],
@@ -73,6 +69,9 @@ export const populateCollection = (collection: Collection, count = numDocs) => {
 
 type Resetable = { reset: () => Promise<void> }
 
+/**
+ * Initialize the sync state and database state.
+ */
 export const initState = async (sync: Resetable, db: Db, coll: Collection) => {
   // Clear syncing state
   await sync.reset()
