@@ -1,3 +1,7 @@
+# 0.3.0
+
+- Add parameter for `numDocs` to `initState`.
+
 # 0.2.0
 
 - Don't assume that the collection exists when calling `initState`.

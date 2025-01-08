@@ -72,7 +72,12 @@ type Resetable = { reset: () => Promise<void> }
 /**
  * Initialize the sync state and database state.
  */
-export const initState = async (sync: Resetable, db: Db, coll: Collection) => {
+export const initState = async (
+  sync: Resetable,
+  db: Db,
+  coll: Collection,
+  numDocs?: number
+) => {
   // Clear syncing state
   await sync.reset()
   // Drop the collection
@@ -82,5 +87,5 @@ export const initState = async (sync: Resetable, db: Db, coll: Collection) => {
     validator: { $jsonSchema: schema },
   })
   // Populate data
-  await populateCollection(coll)
+  await populateCollection(coll, numDocs)
 }
