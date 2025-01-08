@@ -1,6 +1,6 @@
 {
   "name": "mongochangestream-testing",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Testing utilities for mongochangestream",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,8 @@
     "lint": "eslint src/**"
   },
   "keywords": [
-    "mongochangestream"
+    "mongochangestream",
+    "testing"
   ],
   "author": "GovSpend",
   "license": "ISC",

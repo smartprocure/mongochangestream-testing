@@ -75,11 +75,10 @@ type Resetable = { reset: () => Promise<void> }
 export const initState = async (sync: Resetable, db: Db, coll: Collection) => {
   // Clear syncing state
   await sync.reset()
-  // Delete all documents
-  await coll.deleteMany({})
+  // Drop the collection
+  await coll.drop()
   // Set schema
-  await db.command({
-    collMod: coll.collectionName,
+  await db.createCollection(coll.collectionName, {
     validator: { $jsonSchema: schema },
   })
   // Populate data
