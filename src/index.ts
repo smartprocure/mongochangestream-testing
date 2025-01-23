@@ -70,6 +70,18 @@ export const populateCollection = (collection: Collection, count = numDocs) => {
 type Resetable = { reset: () => Promise<void> }
 
 /**
+ * Drop the collection, if it exists, and initialize the JSON schema.
+ */
+export const initCollection = async (db: Db, coll: Collection) => {
+  // Drop the collection
+  await coll.drop()
+  // Set schema
+  await db.createCollection(coll.collectionName, {
+    validator: { $jsonSchema: schema },
+  })
+}
+
+/**
  * Initialize the sync state and database state.
  */
 export const initState = async (
@@ -80,12 +92,8 @@ export const initState = async (
 ) => {
   // Clear syncing state
   await sync.reset()
-  // Drop the collection
-  await coll.drop()
-  // Set schema
-  await db.createCollection(coll.collectionName, {
-    validator: { $jsonSchema: schema },
-  })
+  // Init collection
+  await initCollection(db, coll)
   // Populate data
   await populateCollection(coll, numDocs)
 }

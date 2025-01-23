@@ -1,3 +1,7 @@
+# 0.4.0
+
+- Separate out `initCollection`.
+
 # 0.3.0
 
 - Add parameter for `numDocs` to `initState`.
