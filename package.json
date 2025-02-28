@@ -28,5 +28,19 @@
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
     "mongodb": "^6.12.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports"
+    ],
+    "importOrder": [
+      "^[./]"
+    ],
+    "importOrderSortSpecifiers": true,
+    "importOrderCaseInsensitive": true,
+    "importOrderSeparation": true
   }
 }
