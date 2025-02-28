@@ -15,6 +15,8 @@ import { TimeoutError, WaitOptions, waitUntil } from 'prom-utils'
  * @param pred - The predicate to check: an async function returning a boolean.
  * @param failureMessage - The message to display if the predicate does not
  * return true before the timeout.
+ * @param [waitOptions] - Options to override the default options passed into
+ * `waitUntil`.
  *
  * @throws AssertionError if the predicate does not return true before the
  * timeout.
