@@ -5,6 +5,39 @@ import {
   type Db,
   type Document,
 } from 'mongodb'
+import ms from 'ms'
+import assert from 'node:assert'
+import { TimeoutError, WaitOptions, waitUntil } from 'prom-utils'
+
+/**
+ * Asserts that the provided predicate eventually returns true.
+ *
+ * @param pred - The predicate to check: an async function returning a boolean.
+ * @param failureMessage - The message to display if the predicate does not
+ * return true before the timeout.
+ *
+ * @throws AssertionError if the predicate does not return true before the
+ * timeout.
+ */
+export const assertEventually = async (
+  pred: () => Promise<boolean>,
+  failureMessage = 'Failed to satisfy predicate',
+  waitOptions: WaitOptions = {}
+) => {
+  try {
+    await waitUntil(pred, {
+      timeout: ms('60s'),
+      checkFrequency: ms('50ms'),
+      ...waitOptions,
+    })
+  } catch (e) {
+    if (e instanceof TimeoutError) {
+      assert.fail(failureMessage)
+    } else {
+      throw e
+    }
+  }
+}
 
 export const schema: Document = {
   bsonType: 'object',
