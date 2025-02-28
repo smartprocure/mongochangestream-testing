@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker'
 import {
-  type Document,
+  type AnyBulkWriteOperation,
   type Collection,
   type Db,
-  type AnyBulkWriteOperation,
+  type Document,
 } from 'mongodb'
 
 export const schema: Document = {
