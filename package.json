@@ -6,11 +6,13 @@
   "types": "dist/index.d.ts",
   "repository": "git://github.com/smartprocure/mongochangestream-testing.git",
   "scripts": {
-    "prepare": "npm run lint && npm run build",
+    "prepare": "npm run lint && npm test && npm run build",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc --declaration",
     "build:watch": "tsc --watch",
-    "lint": "eslint src/**"
+    "lint": "eslint src/**",
+    "test": "vitest run",
+    "test:watch": "DEBUG=* vitest"
   },
   "keywords": [
     "mongochangestream",
@@ -20,14 +22,17 @@
   "license": "ISC",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.0",
+    "@types/ms": "^2.1.0",
     "@types/node": "^22.10.2",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.7"
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
-    "mongodb": "^6.12.0"
+    "mongodb": "^6.12.0",
+    "prom-utils": "^0.14.0"
   },
   "prettier": {
     "semi": false,

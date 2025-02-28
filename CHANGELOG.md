@@ -1,3 +1,8 @@
+# 0.5.0
+
+- Added `assertEventually` function to help with testing scenarios where the
+  expected state is not immediately available.
+
 # 0.4.0
 
 - Separate out `initCollection`.
